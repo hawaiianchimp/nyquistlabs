@@ -48,9 +48,9 @@ app.get('/about', function(req, res){
 
 app.get('/users', user.list);
 
-app.get('/*', function(req, res){
-    res.render('home');
-});
+// app.get('/*', function(req, res){
+//     res.render('home');
+// });
 
 
 http.createServer(app).listen(app.get('port'), function(){
