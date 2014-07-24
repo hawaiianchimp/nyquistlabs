@@ -12,8 +12,8 @@ var exphbs  = require('express3-handlebars');
 
 var app = express();
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
+app.engine('html', exphbs({extname:'.html', defaultLayout: 'main'}));
+app.set('view engine', 'html');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -43,7 +43,8 @@ app.get('/index', function(req, res){
 });
 
 app.get('/about', function(req, res){
-    res.render('about');
+    console.log(user.getAll);
+    res.render('about', user.getAll);
 });
 
 app.get('/users', user.list);
