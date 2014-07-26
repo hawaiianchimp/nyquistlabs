@@ -11,5 +11,8 @@
     "mongodb": "*",
     "mongoose": "*",
     "monk": "*"
+  },
+  "engines": {
+    "node": "1.4.3"
   }
 }
