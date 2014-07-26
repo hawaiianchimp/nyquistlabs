@@ -9,7 +9,7 @@ var http = require('http');
 var path = require('path');
 var exphbs  = require('express3-handlebars');
 var mongoose = require('mongoose');
-mongoose.connect(MONGOHQ_URL);
+mongoose.connect(MONGOHQ_URL || 'mongodb://localhost/db');
 
 
 var app = express();
