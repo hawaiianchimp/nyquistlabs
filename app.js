@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -9,6 +8,9 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var exphbs  = require('express3-handlebars');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/db');
+
 
 var app = express();
 
@@ -42,12 +44,10 @@ app.get('/index', function(req, res){
     res.render('home');
 });
 
-app.get('/about', function(req, res){
-    console.log(user.getAll);
-    res.render('about', user.getAll);
-});
+app.get('/about', user.about);
 
 app.get('/users', user.list);
+app.get('/create', user.create);
 
 // app.get('/*', function(req, res){
 //     res.render('home');

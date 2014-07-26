@@ -652,6 +652,8 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   Dropdown.prototype.toggle = function (e) {
     var $this = $(this)
+    var $next = $this.next();
+    console.log($next);
 
     if ($this.is('.disabled, :disabled')) return
 
@@ -670,7 +672,9 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
       $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
 
       if (e.isDefaultPrevented()) return
-
+      
+      $next
+      .toggleClass('animated');
       $parent
         .toggleClass('open')
         .trigger('shown.bs.dropdown', relatedTarget)
@@ -717,11 +721,15 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     $(backdrop).remove()
     $(toggle).each(function () {
       var $parent = getParent($(this))
+      var $next = $(this).next();
       var relatedTarget = { relatedTarget: this }
       if (!$parent.hasClass('open')) return
       $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
       if (e.isDefaultPrevented()) return
-      $parent.removeClass('open').trigger('hidden.bs.dropdown', relatedTarget)
+      {
+        $next.removeClass('animated');
+        $parent.removeClass('open').trigger('hidden.bs.dropdown', relatedTarget);
+      }
     })
   }
 
