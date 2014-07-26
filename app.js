@@ -9,7 +9,8 @@ var http = require('http');
 var path = require('path');
 var exphbs  = require('express3-handlebars');
 var mongoose = require('mongoose');
-mongoose.connect(MONGOHQ_URL || 'mongodb://localhost/db');
+var mongo_url = (typeof MONGOHQ_URL != 'undefined') ? MONGOHQ_URL:'mongodb://localhost/db';
+mongoose.connect(mongo_url);
 
 
 var app = express();
